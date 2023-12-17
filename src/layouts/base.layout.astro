@@ -19,6 +19,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
 const defaultMeta: Partial<SeoProps> = {
   titleTemplate: Site.titleTemplate,
   titleDefault: Site.title,
+  description: Site.description,
   openGraph: {
     basic: {
       title: Site.title,

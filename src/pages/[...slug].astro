@@ -28,6 +28,7 @@ const ogImageUrl = new URL(Astro.url.pathname + ".png", Astro.url.origin).href;
 <BaseLayout
   meta={{
     title: post.data.title,
+    description: post.data.description || post.body.substring(0, 200).trim(),
     openGraph: {
       basic: {
         title: post.data.title,

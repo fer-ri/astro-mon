@@ -7,5 +7,7 @@ export const Site = {
 
   titleTemplate: "%s - AstroMon",
 
+  description: "Clean & Simple Blog Template for Astro JS",
+
   paginationPageSize: 15,
 };
