@@ -22,7 +22,7 @@ const post = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await post.render();
 
-const ogImageUrl = new URL(Astro.url.pathname + ".png", Astro.url.origin).href;
+const ogImageUrl = new URL(post.slug + ".png", Astro.url.origin).href;
 ---
 
 <BaseLayout
