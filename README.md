@@ -2,6 +2,8 @@
 
 Elevate your online presence with Astro JS and Tailwind CSS, ensuring a seamless and polished blogging experience.
 
+![AstroMon](https://astro-mon.vercel.app/og.png)
+
 ## Key Features:
 
 ### 🎨 Tailwind Excellence
@@ -57,6 +59,10 @@ npm install
 ```bash
 npm run dev
 ```
+
+## OG Image Sample
+
+![OG Image Sample](https://astro-mon.vercel.app/consectetur-adipiscing-elit.png)
 
 ## Contributions and Issues:
 
