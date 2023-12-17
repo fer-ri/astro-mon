@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Time from "./time.component.astro";
+import Tag from "./tag.component.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+
+const { remarkPluginFrontmatter } = await post.render();
+---
+
+<div>
+  <div class="mb-2 flex gap-2 text-sm text-gray-500">
+    <span>
+      <Time date={post.data.publishDate} />
+    </span>
+    <span aria-hidden="true">·</span>
+    <span>{remarkPluginFrontmatter.minutesRead}</span>
+  </div>
+
+  <a href={`/${post.slug}`} class="group focus:outline-none">
+    <h2
+      transition:name={`post.title:${post.slug}`}
+      class="mb-4 text-2xl font-bold group-hover:underline group-focus:underline lg:text-4xl"
+    >
+      {post.data.title}
+    </h2>
+  </a>
+
+  {post.data.tags && <Tag tags={post.data.tags} />}
+</div>

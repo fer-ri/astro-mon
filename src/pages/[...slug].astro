@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/base.layout.astro";
+import Time from "@/components/time.component.astro";
+import Tag from "@/components/tag.component.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("posts");
+
+  return posts
+    .filter((post) => !post.data.isDraft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: post,
+    }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const post = Astro.props;
+
+const { Content, remarkPluginFrontmatter } = await post.render();
+
+const ogImageUrl = new URL(Astro.url.pathname + ".png", Astro.url.origin).href;
+---
+
+<BaseLayout
+  meta={{
+    title: post.data.title,
+    openGraph: {
+      basic: {
+        title: post.data.title,
+        type: "article",
+        image: ogImageUrl,
+      },
+    },
+  }}
+>
+  <div class="flex-grow break-words p-4">
+    <div class="mx-auto max-w-3xl">
+      <header class="my-16">
+        <div class="mb-2 flex gap-2 text-sm text-gray-500">
+          <span>
+            <Time date={post.data.publishDate} />
+          </span>
+          <span aria-hidden="true">·</span>
+          <span>{remarkPluginFrontmatter.minutesRead}</span>
+        </div>
+
+        <h1
+          class="mb-8 text-4xl font-bold lg:text-6xl"
+          transition:name={`post.title:${post.slug}`}
+        >
+          {post.data.title}
+        </h1>
+
+        {post.data.tags && <Tag tags={post.data.tags} />}
+      </header>
+
+      <article class="prose max-w-none dark:prose-invert lg:prose-lg">
+        <Content />
+      </article>
+    </div>
+  </div>
+</BaseLayout>

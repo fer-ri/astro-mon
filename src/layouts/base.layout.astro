@@ -1,0 +1,63 @@
+---
+import { SEO, type Props as SeoProps } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import ThemeSwitcher from "@/components/theme-switcher.component.astro";
+import { Site } from "@/config";
+
+interface Props {
+  meta: SeoProps;
+}
+
+const { meta } = Astro.props;
+
+const ogImageUrl = new URL("og.png", Astro.url.origin).href;
+
+const defaultMeta: Partial<SeoProps> = {
+  titleTemplate: Site.titleTemplate,
+  titleDefault: Site.title,
+  openGraph: {
+    basic: {
+      title: Site.title,
+      type: "website",
+      image: ogImageUrl,
+    },
+  },
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <SEO {...defaultMeta} {...meta} />
+
+    <ViewTransitions />
+  </head>
+  <body
+    class="flex min-h-screen flex-col font-sans text-gray-900 antialiased dark:bg-gray-900 dark:text-white"
+  >
+    <nav class="flex items-center p-4">
+      <a href="/" class="text-2xl font-bold">ASTRO</a>
+
+      <div class="ml-auto">
+        <ThemeSwitcher />
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="px-4 py-16 text-gray-500">
+      <div class="text-center">
+        <a href="/" class="font-semibold">ASTRO</a> © {
+          new Date().getFullYear()
+        }
+      </div>
+    </footer>
+  </body>
+</html>

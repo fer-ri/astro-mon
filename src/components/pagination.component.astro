@@ -1,0 +1,135 @@
+---
+import type { Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props extends Omit<Page<CollectionEntry<"posts">>, "data"> {}
+
+const {
+  lastPage,
+  currentPage,
+  url: { prev, next },
+} = Astro.props;
+
+const pageRange = (total = 0, current = 1, limit = 1): (number | string)[] => {
+  const pages: (number | string)[] = [];
+  const range: number[] = [];
+
+  const left: number = current - limit;
+  const right: number = current + limit;
+
+  let key: number;
+
+  for (var i = 1; i <= total; i++) {
+    // Item is first or total
+    if (i === 1 || i === total) {
+      range.push(i);
+    }
+    // Item is within the limit
+    else if (i >= left && i <= right) {
+      range.push(i);
+    }
+  }
+
+  range.forEach(function (i) {
+    if (key) {
+      if (i - key === 2) {
+        pages.push(key + 1);
+      } else if (i - key !== 1) {
+        pages.push("...");
+      }
+    }
+
+    pages.push(i);
+
+    key = i;
+  });
+
+  return pages;
+};
+
+const pages = pageRange(lastPage, currentPage);
+
+const basePath = Astro.url.pathname.replace(/((?<=\w)\/)?(\d+\/?)?$/, "");
+
+const pageUrl = (page: number): string => {
+  if (page === 1) {
+    return basePath;
+  }
+
+  if (basePath === "/") {
+    return basePath + page;
+  }
+
+  return `${basePath}/${page}`;
+};
+---
+
+<nav
+  class="flex items-center justify-center font-medium"
+  role="navigation"
+  aria-label="Pagination"
+>
+  <a
+    href={prev}
+    class:list={["p-4", { "text-gray-300 dark:text-gray-700": !prev }]}
+  >
+    <span class="sr-only">Prev</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="h-6 w-6"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"></path>
+    </svg>
+  </a>
+
+  {
+    pages.map((item) =>
+      typeof item === "number" ? (
+        item === currentPage ? (
+          <div class="p-4 underline" aria-current="page">
+            {item}
+          </div>
+        ) : (
+          <a
+            href={pageUrl(item)}
+            class="p-4 hover:underline"
+            aria-label={`Goto Page ${item}`}
+          >
+            {item}
+          </a>
+        )
+      ) : (
+        <div class="p-4">...</div>
+      ),
+    )
+  }
+
+  <a
+    href={next}
+    class:list={["p-4", { "text-gray-300 dark:text-gray-700": !next }]}
+  >
+    <span class="sr-only">Next</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="h-6 w-6"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+    </svg>
+  </a>
+</nav>
