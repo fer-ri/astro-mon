@@ -43,7 +43,7 @@ const defaultMeta: Partial<SeoProps> = {
     class="flex min-h-screen flex-col font-sans text-gray-900 antialiased dark:bg-gray-900 dark:text-white"
   >
     <nav class="flex items-center p-4">
-      <a href="/" class="text-2xl font-bold">ASTRO</a>
+      <a href="/" class="text-2xl font-bold">{Site.title}</a>
 
       <div class="ml-auto">
         <ThemeSwitcher />
@@ -54,11 +54,11 @@ const defaultMeta: Partial<SeoProps> = {
 
     <footer class="px-4 py-16 text-gray-500">
       <div class="text-center">
-        Built with <a
+        Built with 🚀 <a
           href="https://github.com/fer-ri/astro-mon"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-bold hover:underline">🚀 AstroMon</a
+          class="font-bold hover:underline">{Site.title}</a
         >
       </div>
     </footer>
