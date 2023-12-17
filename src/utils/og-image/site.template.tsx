@@ -22,7 +22,7 @@ export default () => {
       <div
         style={{
           color: "#fff",
-          fontSize: "4.5rem",
+          fontSize: "6rem",
           fontWeight: 700,
         }}
       >
@@ -30,7 +30,7 @@ export default () => {
       </div>
       <div
         style={{
-          fontSize: "1.25rem",
+          fontSize: "2.25rem",
           color: "#6b7280",
         }}
       >

@@ -50,7 +50,7 @@ export default (post: CollectionEntry<"posts">) => {
       <div
         style={{
           color: "#fff",
-          fontSize: "4.5rem",
+          fontSize: "5rem",
           fontWeight: 700,
         }}
       >
