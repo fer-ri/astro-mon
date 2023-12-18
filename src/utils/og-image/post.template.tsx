@@ -38,13 +38,11 @@ export default (post: CollectionEntry<"posts">) => {
           color: "#6b7280",
         }}
       >
-        <time dateTime={post.data.publishDate.toISOString()}>
-          {post.data.publishDate.toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })}
-        </time>
+        {post.data.publishDate.toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
       </div>
 
       <div
