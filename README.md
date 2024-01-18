@@ -6,9 +6,11 @@ Elevate your online presence with Astro JS and Tailwind CSS, ensuring a seamless
 
 ## Key Features:
 
-### 🔥 Rehype Pretty Code
+### 🔥 Rehype Pretty Code + Copy Button
 
-Elevate your code blocks with rehype-pretty-code: VS Code-grade syntax highlighting for Markdown and MDX. Build-time and runtime support for a seamless, beautiful display.
+Elevate your code blocks with rehype-pretty-code: VS Code-grade syntax highlighting for Markdown and MDX. Build-time and runtime support for a seamless, beautiful display. Copy button is available both for `*.md` and `*.mdx`
+
+![Rehype Pretty Code with Copy Button](/screenshots/rehype-pretty-code-copy-button.jpg)
 
 ### 🎨 Tailwind Excellence
 
