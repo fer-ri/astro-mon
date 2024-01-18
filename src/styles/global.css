@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[data-rehype-pretty-code-figure] {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply mt-0 inline-flex h-12 items-center rounded-tl-md rounded-tr-md;
+  @apply border-t-2 border-indigo-500 bg-[--tw-prose-pre-bg] px-4
+    text-sm dark:bg-[--tw-prose-invert-pre-bg];
+}
+
+[data-rehype-pretty-code-title] + pre {
+  @apply rounded-tl-none;
+}
+
+pre {
+  @apply mx-auto overflow-auto rounded-md p-4;
+  @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-thumb-rounded;
+
+  [data-line] {
+    @apply -mx-4 px-6;
+  }
+
+  [data-highlighted-line] {
+    @apply bg-white/10;
+  }
+
+  [data-highlighted-chars] {
+    @apply rounded-md p-1;
+  }
+
+  mark {
+    @apply bg-gray-800 text-inherit;
+  }
+}
+
+code {
+  @apply text-base !leading-loose md:text-base;
+
+  &[data-line-numbers] {
+    counter-reset: line;
+
+    > [data-line]::before {
+      counter-increment: line;
+      content: counter(line);
+
+      @apply mr-4 inline-block w-4 text-right text-gray-500;
+    }
+  }
+}
