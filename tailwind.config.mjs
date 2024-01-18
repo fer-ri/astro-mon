@@ -9,6 +9,18 @@ export default {
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            pre: {
+              paddingLeft: false,
+              paddingRight: false,
+              paddingTop: false,
+              paddingBottom: false,
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [

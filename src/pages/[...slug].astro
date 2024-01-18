@@ -59,7 +59,7 @@ const ogImageUrl = new URL(post.slug + ".png", Astro.url.origin).href;
         {post.data.tags && <Tag tags={post.data.tags} />}
       </header>
 
-      <article class="prose max-w-none dark:prose-invert lg:prose-lg">
+      <article class="prose dark:prose-invert">
         <Content />
       </article>
     </div>

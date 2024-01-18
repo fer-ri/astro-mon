@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose {
+  @apply max-w-none !leading-7 sm:text-lg sm:!leading-9 md:text-xl;
+}
+
 [data-rehype-pretty-code-figure] {
   @apply relative;
 }
