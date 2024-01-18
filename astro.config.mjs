@@ -8,7 +8,13 @@ import { remarkReadingTime } from "./src/remark-plugins/remark-reading-time.mjs"
 // https://astro.build/config
 export default defineConfig({
   site: Site.deployedUrl,
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+      nesting: true,
+    }),
+    sitemap(),
+  ],
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
