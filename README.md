@@ -6,6 +6,10 @@ Elevate your online presence with Astro JS and Tailwind CSS, ensuring a seamless
 
 ## Key Features:
 
+### 🔥 Rehype Pretty Code
+
+Elevate your code blocks with rehype-pretty-code: VS Code-grade syntax highlighting for Markdown and MDX. Build-time and runtime support for a seamless, beautiful display.
+
 ### 🎨 Tailwind Excellence
 
 Harness the power of Tailwind CSS for efficient and elegant styling. Craft a visually pleasing and professional appearance for your blog.
